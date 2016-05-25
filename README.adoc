@@ -1,0 +1,32 @@
+= nano-proxy
+Because everything is micro these days
+
+== What
+
+Started as an excuse to play with the amazing
+http://netty.io[netty] framework. I just needed to proxy
+traffic from a private network (10.0.0.x) via a public machine.
+
+Then I realized I could play with a bunch of cool stuff (Traffic shaping, hex dumps, connection control, load balancing)
+
+== WIP
+
+Not really usable, at the moment. but I had to start pushing something to github.
+
+== Wish list
+
+* [ ] TCP and HTTP proxies
+* [ ] Channel Pooling
+* [ ] Load balancing with ribbon
+* [ ] Tests, tests, tests
+
+== Screenshots
+
+
+image::https://cloud.githubusercontent.com/assets/803893/15525026/638a406a-21f4-11e6-90ec-4c68bf81b02e.png[]
+
+
+image::https://cloud.githubusercontent.com/assets/803893/15525029/6a81ec4c-21f4-11e6-84fe-de6f3e3ed828.png[]
+
+
+image::https://cloud.githubusercontent.com/assets/803893/15525034/70558fde-21f4-11e6-9fcd-5d3926872442.png[]

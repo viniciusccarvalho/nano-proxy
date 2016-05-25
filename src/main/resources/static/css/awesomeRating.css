@@ -1,0 +1,4 @@
+.rating-star { color: lightgrey; cursor: pointer; }
+.rating-star.fa-star { color: #FDD05B; }
+.rating-star-hover { opacity: 0.6; }
+.rating-star-fractional {  position: absolute; overflow: hidden; z-index: 2; }

@@ -1,0 +1,57 @@
+<div class="row">
+    <form class="col s12" name="proxyForm">
+        <div class="input-field col s1">
+            <select ng-model="proxy.type" material-select watch>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="TCP">TCP</option>
+                <option value="HTTP">HTTP</option>
+                <label>Proxy Type</label>
+            </select>
+        </div>
+        <div class="input-field col s2">
+            <input type="text" class="validate" id="alias"  ng-model="proxy.alias" required>
+            <label for="alias">Alias</label>
+        </div>
+        <div class="input-field col s2">
+            <input type="text" class="validate" id="localPort" ng-model="proxy.localPort">
+            <label for="localPort">Local Port</label>
+        </div>
+        <div class="input-field col s2">
+            <input type="text" class="validate" id="remoteHost"  ng-model="proxy.remoteHost" required>
+            <label for="remoteHost">Remote Host</label>
+        </div>
+        <div class="input-field col s2">
+            <input type="text" class="validate" id="remotePort"  ng-model="proxy.remotePort" required>
+            <label for="remotePort">Remote Port</label>
+        </div>
+        <div class="valign-wrapper col s3">
+            <input type="submit" value="Create new Proxy" class="waves-effect waves-light btn" ng-click="addProxy()"/>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <table class="highlight bordered striped responsive-table" >
+        <thead>
+        <tr>
+            <th>Alias</th>
+            <th>Local Port</th>
+            <th>Remote Host</th>
+            <th>Remote Port</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="proxy in proxies">
+            <td><a href="#/proxy/{{proxy.id}}">{{proxy.alias}}</a></td>
+            <td>{{proxy.localPort}}</td>
+            <td>{{proxy.remoteHost}}</td>
+            <td>{{proxy.remotePort}}</td>
+            <td>
+                <div ng-if="proxy.active"><img src="/images/on.png"></div>
+                <div ng-if="!proxy.active"><img src="/images/off.png"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

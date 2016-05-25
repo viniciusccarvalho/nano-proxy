@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col s1">
+        <h5 class="left">Overview</h5>
+    </div>
+    <div class="col s11">
+        <div class="switch right">
+            <label>
+                Off
+                <input type="checkbox" ng-model="proxy.active" ng-change="toggleStatus(proxy.active)">
+                <span class="lever"></span>
+                On
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s3">
+        <h6>{{proxy.alias}} @ {{proxy.remotePort}}</h6>
+    </div>
+    <div class="col s3">
+        <h6>remote host: {{proxy.remoteHost}} @ {{proxy.remotePort}}</h6>
+    </div>
+</div>
+<div class="row">
+   <div class="chart-container col s6">
+       <canvas  id="received-chart" class="chart chart-line chart-xl ng-isolate-scope" chart-data="received" chart-options="options" chart-labels="labels" style="height:300px"></canvas>
+   </div>
+   <div class="chart-container col s6">
+       <canvas  id="sent-chart" chart-colours="sentColors" class="chart chart-line chart-xl ng-isolate-scope" chart-data="sent" chart-options="options" chart-labels="labels" style="height:300px"></canvas>
+   </div>
+</div>
+<div class="row">
+    <div class="col s6 center-align">Bytes received (Kb)</div>
+    <div class="col s6 center-align">Bytes sent (Kb)</div>
+</div>
+<div class="row">
+    <div class="col s1"></div>
+    <div class="col s11">
+        <div class="section">
+            <h5>QoS</h5>
+            <div class="divider"></div>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Traffic Shapping</div>
+              <div class="form-group valign-wrapper">
+                  <div class="input-field col s2">
+                      <input type="text" class="validate" id="receiveLimit"  ng-model="qos.receive" required>
+                      <label for="receiveLimit">Receive limit</label>
+                  </div>
+                  <div class="input-field col s2">
+                      <input type="text" class="validate" id="sentLimit"  ng-model="qos.sent" required>
+                      <label for="sentLimit">Send limit</label>
+                  </div>
+                  <div class="valign col s2">
+                      <input type="submit" value="Apply" class="waves-effect waves-light btn"/>
+                  </div>
+                  <div class="col s6"></div>
+              </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,57 @@
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+body {
+    margin-bottom: 60px;
+}
+
+body, h1, h2, h3 {
+    font-weight: 400;
+    font-family: "Varela Round", sans-serif;
+    background-color: #5d5d5d;
+}
+
+
+.navbar {
+    border-top: 4px solid #6db33f;
+    background-color: #34302d;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+    -webkit-transition: color 150ms;
+    transition: color 150ms;
+    color: #95a5a6;
+    text-decoration: none;
+}
+a:hover {
+    color: #7f8c8d;
+    text-decoration: underline;
+}
+.contain {
+    width: 100%;
+}
+
+.footer {
+    font-size: 4px;
+    position: relative;
+    margin-top: -100px; /* negative value of footer height */
+    height: 100px;
+    clear:both;
+    padding-top:20px;
+}
+.ps {
+     background-color: gray;
+ }

@@ -1,13 +1,9 @@
 package io.igx.proxy.handlers;
 
 import io.igx.proxy.domain.ProxyDefinition;
-import io.igx.proxy.domain.TrafficShapping;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.traffic.AbstractTrafficShapingHandler;
-import io.netty.handler.traffic.GlobalChannelTrafficShapingHandler;
 
 /**
  * @author Vinicius Carvalho

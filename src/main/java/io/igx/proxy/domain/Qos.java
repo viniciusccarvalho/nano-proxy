@@ -5,13 +5,13 @@ package io.igx.proxy.domain;
  */
 public class Qos {
 
-	private TrafficShapping trafficShapping;
+	private TrafficShaping trafficShaping;
 
-	public TrafficShapping getTrafficShapping() {
-		return trafficShapping;
+	public TrafficShaping getTrafficShaping() {
+		return trafficShaping;
 	}
 
-	public void setTrafficShapping(TrafficShapping trafficShapping) {
-		this.trafficShapping = trafficShapping;
+	public void setTrafficShaping(TrafficShaping trafficShapping) {
+		this.trafficShaping = trafficShapping;
 	}
 }

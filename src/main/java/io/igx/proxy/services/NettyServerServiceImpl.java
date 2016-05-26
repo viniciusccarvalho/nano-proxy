@@ -1,6 +1,5 @@
 package io.igx.proxy.services;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,6 +11,7 @@ import io.igx.proxy.domain.ConnectionStats;
 import io.igx.proxy.domain.CreateProxyRequest;
 import io.igx.proxy.domain.ProxyDefinition;
 import io.igx.proxy.domain.ServerNotFoundException;
+import io.igx.proxy.domain.TrafficShaping;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 
@@ -53,6 +53,13 @@ public class NettyServerServiceImpl implements NettyServerService {
 	@Override
 	public void stopServer(String id) {
 		findServer(id).stop();
+	}
+
+	@Override
+	public void configureTraffic(String id, TrafficShaping config) {
+		ProxyServer server = findServer(id);
+		server.getDefinition().getQos().setTrafficShaping(config);
+		server.configureTraffic(config);
 	}
 
 	@Override

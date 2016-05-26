@@ -24,7 +24,7 @@ public class TrafficSimulationTests {
 
 	@Test
 	public void runSimulation() throws Exception{
-		TrafficSimulator simulator = new TrafficSimulator(100);
+		TrafficSimulator simulator = new TrafficSimulator(300);
 		simulator.connect("localhost",8008);
 		simulator.run();
 	}
@@ -58,7 +58,7 @@ public class TrafficSimulationTests {
 		private long runningTime;
 		private Bootstrap bootstrap;
 		private Channel channel;
-		private Integer[] sizes = new Integer[]{256,512,1024,2048,4096,8192};
+		private Integer[] sizes = new Integer[]{512,1024,2048,4096,8192,16384};
 		private Random random = new Random();
 
 		public TrafficSimulator(long runningTime) {

@@ -36,8 +36,6 @@ nanoproxy.controller('proxy', function($scope, $routeParams, $http, $interval){
     $scope.updateStats = function(){
         $http.get('/servers/'+$scope.proxy.id+'/stats').then(function success(response){
 
-
-
             if($scope.received.length && $scope.received[0].length >= $scope.maxPoints){
                 $scope.labels = $scope.labels.slice(1);
                 $scope.sent[0] = $scope.sent[0].slice(1);
@@ -49,22 +47,16 @@ nanoproxy.controller('proxy', function($scope, $routeParams, $http, $interval){
                 deltaReceived = stats.bytesReceived - $scope.last.bytesReceived;
                 deltaSent = stats.bytesSent - $scope.last.bytesSent;
                 $scope.labels.push('');
-                $scope.received[0].push(deltaReceived/1024);
-                $scope.sent[0].push(deltaSent/1024);
+                $scope.received[0].push(stats.bytesReceived/1024);
+                $scope.sent[0].push(stats.bytesSent/1024);
             }
 
             $scope.last = response.data;
 
-
         }, function error(response){
             console.error(response);
+            $interval.cancel($scope.promise);
         });
-    }
-
-    $scope.getRandomValue = function(data){
-        var l = data.length, previous = l ? data[l - 1] : 50;
-        var y = previous + Math.random() * 10 - 5;
-        return y < 0 ? 0 : y > 100 ? 100 : y;
     }
 
     $scope.toggleStatus = function($event){
@@ -74,38 +66,18 @@ nanoproxy.controller('proxy', function($scope, $routeParams, $http, $interval){
             console.error(response);
         });
     }
-    $scope.promise = $interval(function(){$scope.updateStats()},250);
-    $scope.toggleConsole = function(){
-        $scope.console = !$scope.console;
+
+    $scope.applyChanges = function(){
+        $http.post('/servers/'+$scope.proxy.id+'/traffic', $scope.proxy.qos.trafficShaping).then(function success(response){
+
+        },function error(response){
+
+        });
     }
 
-    //$scope.transferChart = new transferChart('transfer_chart');
-    //
-    //function transferChart(element){
-    //    var self = this;
-    //
-    //    self.chart = new google.visualization.AreaChart(document.getElementById(element));
-    //    self.last = [];
-    //    self.delta = [];
-    //
-    //    var update = function(connectionStats){
-    //        if(self.last.length == 0){
-    //            self.last.push(connectionStats.bytesReceived);
-    //            self.last.push(connectionStats.bytesSent);
-    //        }else{
-    //            self.delta[0] = connectionStats.bytesReceived - self.last[0];
-    //            self.delta[1] = connectionStats.bytesSent - self.last[1];
-    //            self.updateChart();
-    //        }
-    //    }
-    //
-    //    var updateChart = function(){
-    //        if(self.data.getNumberOfRows() > 600){
-    //            self.data.removeRows(0,1);
-    //        }
-    //    }
-    //
-    //}
+    $scope.promise = $interval(function(){$scope.updateStats()},1000);
+
+
 
 
 

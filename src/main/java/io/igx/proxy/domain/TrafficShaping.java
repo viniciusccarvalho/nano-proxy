@@ -3,21 +3,21 @@ package io.igx.proxy.domain;
 /**
  * @author Vinicius Carvalho
  */
-public class TrafficShapping {
+public class TrafficShaping {
 	private long writeLimit;
 	private long readLimit;
 	private long checkInterval;
 	private long maxTime;
 
 	public static final long DEFAULT_CHECK_INTERVAL = 1000l;
-	public static final long DEFAULT_MAX_TIME = 15000l;
+	public static final long DEFAULT_MAX_TIME = 1000l;
 
-	public TrafficShapping(){}
-	public TrafficShapping(long writeLimit, long readLimit) {
+	public TrafficShaping(){}
+	public TrafficShaping(long writeLimit, long readLimit) {
 		this(writeLimit,readLimit, DEFAULT_CHECK_INTERVAL,DEFAULT_MAX_TIME);
 	}
 
-	public TrafficShapping(long writeLimit, long readLimit, long checkInterval, long maxTime) {
+	public TrafficShaping(long writeLimit, long readLimit, long checkInterval, long maxTime) {
 		this.writeLimit = writeLimit;
 		this.readLimit = readLimit;
 		this.checkInterval = checkInterval;

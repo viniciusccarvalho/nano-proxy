@@ -5,6 +5,7 @@ import java.util.Map;
 import io.igx.proxy.domain.ConnectionStats;
 import io.igx.proxy.domain.CreateProxyRequest;
 import io.igx.proxy.domain.ProxyDefinition;
+import io.igx.proxy.domain.TrafficShaping;
 import io.igx.proxy.services.NettyServerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,13 @@ public class ServerController {
 	public ResponseEntity getStats(@PathVariable("id") String id){
 		ConnectionStats stats = service.getStats(id);
 		return new ResponseEntity(stats,HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/{id}/traffic")
+	public ResponseEntity updateTrafficConfiguration(@PathVariable("id") String id, @RequestBody TrafficShaping config){
+		service.configureTraffic(id,config);
+		ProxyDefinition definition = service.getProxyDefinition(id);
+		return new ResponseEntity(definition,HttpStatus.OK);
 	}
 
 }

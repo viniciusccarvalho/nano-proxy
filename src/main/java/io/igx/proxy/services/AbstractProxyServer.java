@@ -1,12 +1,9 @@
 package io.igx.proxy.services;
 
-import java.util.Map;
-
 import io.igx.proxy.domain.ConnectionStats;
 import io.igx.proxy.domain.ProxyDefinition;
-import io.igx.proxy.domain.TrafficShapping;
+import io.igx.proxy.domain.TrafficShaping;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.handler.traffic.AbstractTrafficShapingHandler;
 import io.netty.handler.traffic.GlobalChannelTrafficShapingHandler;
@@ -61,16 +58,21 @@ public abstract class AbstractProxyServer implements ProxyServer {
 		if(!running)
 			return new ConnectionStats(0,0);
 
-		return new ConnectionStats(trafficHandler.trafficCounter().cumulativeWrittenBytes(),trafficHandler.trafficCounter().cumulativeReadBytes());
+		return new ConnectionStats(trafficHandler.trafficCounter().lastWrittenBytes(),trafficHandler.trafficCounter().lastReadBytes());
 	}
 
 	private void createTrafficHandler(EventLoopGroup workerGroup){
-		if(definition.getQos().getTrafficShapping() != null){
-			TrafficShapping tf = definition.getQos().getTrafficShapping();
-			this.trafficHandler = new GlobalChannelTrafficShapingHandler(workerGroup,tf.getWriteLimit(),tf.getReadLimit(),tf.getCheckInterval(),tf.getMaxTime());
+		if(definition.getQos().getTrafficShaping() != null){
+			TrafficShaping tf = definition.getQos().getTrafficShaping();
+			this.trafficHandler = new GlobalChannelTrafficShapingHandler(workerGroup,tf.getWriteLimit(),tf.getReadLimit(),0,0,tf.getCheckInterval(),tf.getMaxTime());
 		}else{
-			this.trafficHandler = new GlobalChannelTrafficShapingHandler(workerGroup);
+			this.trafficHandler = new GlobalChannelTrafficShapingHandler(workerGroup,0,0,0,0,1000,1000);
 		}
+	}
+
+	@Override
+	public void configureTraffic(TrafficShaping config) {
+		this.trafficHandler.configure(config.getWriteLimit(),config.getReadLimit());
 	}
 
 	@Override

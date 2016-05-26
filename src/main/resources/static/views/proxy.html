@@ -42,15 +42,15 @@
             <div class="collapsible-header"><i class="material-icons">filter_drama</i>Traffic Shapping</div>
               <div class="form-group valign-wrapper">
                   <div class="input-field col s2">
-                      <input type="text" class="validate" id="receiveLimit"  ng-model="qos.receive" required>
+                      <input type="text" class="validate" id="receiveLimit"  ng-model="proxy.qos.trafficShaping.writeLimit" required>
                       <label for="receiveLimit">Receive limit</label>
                   </div>
                   <div class="input-field col s2">
-                      <input type="text" class="validate" id="sentLimit"  ng-model="qos.sent" required>
+                      <input type="text" class="validate" id="sentLimit"  ng-model="proxy.qos.trafficShaping.readLimit" required>
                       <label for="sentLimit">Send limit</label>
                   </div>
                   <div class="valign col s2">
-                      <input type="submit" value="Apply" class="waves-effect waves-light btn"/>
+                      <input type="submit" value="Apply" class="waves-effect waves-light btn" ng-click="applyChanges()"/>
                   </div>
                   <div class="col s6"></div>
               </div>

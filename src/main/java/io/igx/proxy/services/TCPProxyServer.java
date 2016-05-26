@@ -30,7 +30,7 @@ public class TCPProxyServer extends AbstractProxyServer {
 				.channel(NioServerSocketChannel.class)
 				.handler(new LoggingHandler(LogLevel.INFO))
 				.childHandler(new ProxyInitializer(definition,trafficHandler))
-				.childOption(ChannelOption.AUTO_READ,false)
+				.childOption(ChannelOption.AUTO_READ,true)
 				.bind(definition.getLocalPort());
 
 		return cf.channel();

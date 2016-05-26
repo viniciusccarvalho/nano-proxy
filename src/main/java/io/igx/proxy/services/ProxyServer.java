@@ -2,6 +2,7 @@ package io.igx.proxy.services;
 
 import io.igx.proxy.domain.ConnectionStats;
 import io.igx.proxy.domain.ProxyDefinition;
+import io.igx.proxy.domain.TrafficShaping;
 import io.netty.channel.EventLoopGroup;
 
 /**
@@ -12,4 +13,5 @@ public interface ProxyServer {
 	ConnectionStats getStats();
 	void start(EventLoopGroup bossGroup, EventLoopGroup workerGroup);
 	void stop();
+	void configureTraffic(TrafficShaping config);
 }
